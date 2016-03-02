@@ -98,6 +98,17 @@ If we put the URL into our jquery code at public/jq.js with something like
 You will get a CORS error on the console of your browser.
 
 So, lets make a proxy for this route in routes/index.js
+
+First add the request module to the top of your routes/index.js file
+<pre>
+var request = require('request')
+</pre>
+Then install the module
+<pre>
+npm install request --save
+</pre>
+
+Then use 'request' to pipe the output from the real URL back through the node server to your browser.
 <pre>
 var politics = "https://zlzlap7j50.execute-api.us-east-1.amazonaws.com/prod";
 router.get('/politics', function(req,res) {
@@ -108,7 +119,7 @@ router.get('/politics', function(req,res) {
 
 Test the route by accessing the URL 'http://yourserver:3000/politics'
 
-And change our angular call to point to this route in public/javascripts/app.js
+And change jquery ajax url call to point to this route in public/jq.html
 <pre>
 var politics = "politics";
 </pre>
