@@ -38,14 +38,14 @@ and accessing the URL 'http://yourserver:3000'
 You should see that you havent set up the '/pokemon' route because the list is empty and you can see the error in your console
 
 First add the route and make sure it works when you access 'http://yourserver:3000/pokemon'
-<pre>
+```javascript
 router.get('/pokemon', function(req, res) {
   console.log("In Pokemon");
 });
-</pre>
+```
 
 Then add the pokemon array to your routes/index.html
-<pre>
+```javascript
 var pokemon = [
   {
     name: 'Pikachu',
@@ -73,19 +73,19 @@ var pokemon = [
     avatarUrl: 'https://s-media-cache-ak0.pinimg.com/originals/7e/3b/67/7e3b67c53469cc4302035be70a7f2d60.gif'
   }
 ];
-</pre>
+```
 
 Now, send back the array in your route
-<pre>
+```javascript
 res.send(pokemon);
-</pre>
+```
 
-Some of you may want to access a REST service that doesnt have the CORS headers for your project.  Lets go through an example of how to do this
+Some of you may want to access a REST service that doesnt have the CORS headers for your project.  Lets go through an example of how to do this.
 
 Lets say we want to get information about candidates from 'https://zlzlap7j50.execute-api.us-east-1.amazonaws.com/prod'
 
 If we put the URL into our jquery code at public/jq.js with something like
-<pre>
+```javascript
     var politics = "https://zlzlap7j50.execute-api.us-east-1.amazonaws.com/prod";
     $.ajax({
       url: politics,
@@ -93,36 +93,36 @@ If we put the URL into our jquery code at public/jq.js with something like
           console.log(data);
       }
     });
+```
 
-</pre>
 You will get a CORS error on the console of your browser.
 
 So, lets make a proxy for this route in routes/index.js
 
 First add the request module to the top of your routes/index.js file
-<pre>
+```javascript
 var request = require('request')
-</pre>
+```
 Then install the module
 <pre>
 npm install request --save
 </pre>
 
 Then use 'request' to pipe the output from the real URL back through the node server to your browser.
-<pre>
+```javascript
 var politics = "https://zlzlap7j50.execute-api.us-east-1.amazonaws.com/prod";
 router.get('/politics', function(req,res) {
   console.log("In politics");
   request(politics).pipe(res);
 });
-</pre>
+```
 
 Test the route by accessing the URL 'http://yourserver:3000/politics'
 
 And change jquery ajax url call to point to this route in public/jq.html
-<pre>
+```javascript
 var politics = "politics";
-</pre>
+```
 
 What about saving a new pokimon?
 
@@ -154,11 +154,11 @@ function handleIt() {
 }
 ```
 And now we need to build the back end.  We have created an object that should be pushed directly into the array on the back end.  Once we update the array, it should be permanent even if you refresh the browser.  Edit routes/index.js
-<pre>
+```javascript
 router.post('/pokemon', function(req, res) {
     console.log("In Pokemon Post");
     console.log(req.body);
     pokemon.push(req.body);
     res.end('{"success" : "Updated Successfully", "status" : 200}');
 }); 
-</pre>
+```
