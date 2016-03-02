@@ -21,11 +21,11 @@ cp jquery-express-tutorial/src/style.css  poki/public/stylesheets/
 </pre>
 
 Now create a route to the index.html by editing routes/index.js to be
-'''javascript
+```javascript
 router.get('/', function(req, res) {
   res.sendFile('jq.html', { root: 'public' });
 });
-'''
+```
 
 ## Running the server
 
@@ -127,14 +127,14 @@ var politics = "politics";
 What about saving a new pokimon?
 
 First add a form to the public/jq.html file.
-'''
+```
 <h1> Enter A New Poki</h1>
     <form id="newPoki" action="javascript:handleIt()">
         Name: <input type="text" id="pokiName" value=""><br>
         Url: <input type="url" id="pokiUrl" value=""><br>
         <input type="submit" value="Submit">
     </form>
-'''
+```
 
 And add the function to execute on the submit
 <pre>
