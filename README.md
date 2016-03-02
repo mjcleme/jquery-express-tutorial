@@ -123,3 +123,42 @@ And change jquery ajax url call to point to this route in public/jq.html
 <pre>
 var politics = "politics";
 </pre>
+
+What about saving a new pokimon?
+
+First add a form to the public/jq.html file.
+<pre>
+<h1> Enter A New Poki</h1>
+    <form id="newPoki" action="javascript:handleIt()">
+        Name: <input type="text" id="pokiName" value=""><br>
+        Url: <input type="url" id="pokiUrl" value=""><br>
+        <input type="submit" value="Submit">
+    </form>
+</pre>
+
+And add the function to execute on the submit
+<pre>
+function handleIt() {
+  var formData = {name:$("#pokiName").val(),avatarUrl:$("#pokiUrl").val()};
+  console.log(formData);
+  var pokiURL = 'pokemon';
+  $.ajax({
+      url: pokiURL,
+      type:"POST",
+      data:formData,
+      success: function( data ) {
+          console.log("Response");
+          console.log(data);
+      }
+  });
+}
+</pre>
+And now we need to build the back end.  We have created an object that should be pushed directly into the array on the back end.  Once we update the array, it should be permanent even if you refresh the browser.  Edit routes/index.js
+<pre>
+router.post('/pokemon', function(req, res) {
+    console.log("In Pokemon Post");
+    console.log(req.body);
+    pokemon.push(req.body);
+    res.end('{"success" : "Updated Successfully", "status" : 200}');
+}); 
+</pre>
