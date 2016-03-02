@@ -127,14 +127,14 @@ var politics = "politics";
 What about saving a new pokimon?
 
 First add a form to the public/jq.html file.
-<pre>
+'''
 <h1> Enter A New Poki</h1>
     <form id="newPoki" action="javascript:handleIt()">
         Name: <input type="text" id="pokiName" value=""><br>
         Url: <input type="url" id="pokiUrl" value=""><br>
         <input type="submit" value="Submit">
     </form>
-</pre>
+'''
 
 And add the function to execute on the submit
 <pre>
