@@ -129,15 +129,15 @@ What about saving a new pokimon?
 First add a form to the public/jq.html file.
 ```
 <h1> Enter A New Poki</h1>
-    <form id="newPoki" action="javascript:handleIt()">
-        Name: <input type="text" id="pokiName" value=""><br>
-        Url: <input type="url" id="pokiUrl" value=""><br>
-        <input type="submit" value="Submit">
-    </form>
+<form id="newPoki" action="javascript:handleIt()">
+  Name: <input type="text" id="pokiName" value=""><br>
+  Url: <input type="url" id="pokiUrl" value=""><br>
+  <input type="submit" value="Submit">
+</form>
 ```
 
 And add the function to execute on the submit
-<pre>
+```javascript
 function handleIt() {
   var formData = {name:$("#pokiName").val(),avatarUrl:$("#pokiUrl").val()};
   console.log(formData);
@@ -152,7 +152,7 @@ function handleIt() {
       }
   });
 }
-</pre>
+```
 And now we need to build the back end.  We have created an object that should be pushed directly into the array on the back end.  Once we update the array, it should be permanent even if you refresh the browser.  Edit routes/index.js
 <pre>
 router.post('/pokemon', function(req, res) {
