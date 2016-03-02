@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="./stylesheets/style.css">
+  <meta charset="utf-8">
+  <title>Node api tutorial</title>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script>
+$( document ).ready(function() {
+    var pokiURL = 'pokemon';
+	$.ajax({
+	  url: pokiURL,
+	  success: function( data ) {
+          console.log(data);
+		  $.each(data,function(element) {
+		    var newlist = "<li class='pokemon'><h1>";
+		    newlist+=data[element].name
+            newlist+= "</h1> <img class='avatar' src='"
+            newlist+=data[element].avatarUrl
+            newlist+="' ></li>";
+		    $("#list" ).append(newlist);
+          });
+	  }
+	});
+});
+</script>
+</head>
+<body>
+
+  <div id='poki'>
+    <ul id='list' class='list center stretch'>
+    </ul>
+
+  </div>
+
+</body>
+</html>
