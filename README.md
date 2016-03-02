@@ -86,13 +86,14 @@ Lets say we want to get information about candidates from 'https://zlzlap7j50.ex
 
 If we put the URL into our jquery code at public/jq.js with something like
 <pre>
-$.ajax({
-      var politics = "https://zlzlap7j50.execute-api.us-east-1.amazonaws.com/prod";
+    var politics = "https://zlzlap7j50.execute-api.us-east-1.amazonaws.com/prod";
+    $.ajax({
       url: politics,
       success: function( data ) {
           console.log(data);
       }
     });
+
 </pre>
 You will get a CORS error on the console of your browser.
 
