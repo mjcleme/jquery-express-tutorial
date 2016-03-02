@@ -21,11 +21,11 @@ cp jquery-express-tutorial/src/style.css  poki/public/stylesheets/
 </pre>
 
 Now create a route to the index.html by editing routes/index.js to be
-<pre>
+'''javascript
 router.get('/', function(req, res) {
   res.sendFile('jq.html', { root: 'public' });
 });
-</pre>
+'''
 
 ## Running the server
 
